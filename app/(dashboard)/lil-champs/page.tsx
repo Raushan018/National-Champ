@@ -112,14 +112,14 @@ export default function LilChampsPage() {
                             {!item.disabled ? (
                                 <Link href={item.href}>
                                     <button className={cn(
-                                        "w-full py-3.5 rounded-xl text-lg font-black text-white transition-all transform flex items-center justify-center gap-2 active:scale-95",
+                                        "w-full py-2.5 rounded-xl text-base font-extrabold text-white transition-all transform flex items-center justify-center gap-2 active:scale-95",
                                         item.color, item.shadow
                                     )}>
                                         Go to Activity <ArrowRight className="w-5 h-5" />
                                     </button>
                                 </Link>
                             ) : (
-                                <button disabled className="w-full py-3.5 rounded-xl text-lg font-black text-ink-tertiary bg-surface-bg border-2 border-transparent cursor-not-allowed">
+                                <button disabled className="w-full py-2.5 rounded-xl text-base font-extrabold text-ink-tertiary bg-surface-bg border-2 border-transparent cursor-not-allowed">
                                     Unlocks Soon! 🔒
                                 </button>
                             )}
