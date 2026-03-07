@@ -1,7 +1,4 @@
 {
-  "/(dashboard)/dashboard/page": "app/(dashboard)/dashboard/page.js",
-  "/(dashboard)/competitions/page": "app/(dashboard)/competitions/page.js",
-  "/(dashboard)/mock-quiz/page": "app/(dashboard)/mock-quiz/page.js",
-  "/(dashboard)/leaderboard/page": "app/(dashboard)/leaderboard/page.js",
-  "/(dashboard)/lil-champs/speech/page": "app/(dashboard)/lil-champs/speech/page.js"
+  "/page": "app/page.js",
+  "/(dashboard)/dashboard/page": "app/(dashboard)/dashboard/page.js"
 }
