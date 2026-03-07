@@ -193,11 +193,11 @@ export default function CompetitionsPage() {
 
                             <Link href={comp.slug === "lil-champs" ? "/lil-champs" : `/competitions/${comp.slug}`} className="w-full">
                                 <button className={cn(
-                                    "w-full py-3 rounded-xl text-lg font-black text-white transition-all transform",
+                                    "w-full py-2.5 rounded-xl text-base font-extrabold text-white transition-all transform",
                                     comp.color, comp.shadow,
-                                    "group-hover:scale-105 active:scale-95 flex items-center justify-center gap-2"
+                                    "hover:-translate-y-0.5 active:scale-95 flex items-center justify-center gap-2"
                                 )}>
-                                    Let&apos;s Play! <Rocket className="w-5 h-5" />
+                                    Let&apos;s Play! <Rocket className="w-4 h-4" />
                                 </button>
                             </Link>
                         </div>
@@ -221,12 +221,9 @@ export default function CompetitionsPage() {
                 <div className="text-center md:text-left">
                     <h3 className="font-heading font-black text-3xl mb-3">Want something specific? 🎯</h3>
                     <p className="text-xl font-bold opacity-90 mb-6">Every day we add new fun quests and challenges. Check back daily!</p>
-                    <div className="flex flex-wrap gap-3 justify-center md:justify-start">
-                        <button className="px-6 py-3 bg-white text-brand-success rounded-xl text-lg font-black shadow-lg hover:-translate-y-1 transition-transform">
-                            View Calendar 📅
-                        </button>
-                        <button className="px-6 py-3 bg-transparent border-2 border-white text-white rounded-xl text-lg font-black hover:bg-white/10 transition-all">
-                            Tell us what you want! 💡
+                    <div className="flex gap-3">
+                        <button className="px-5 py-2.5 rounded-xl bg-brand-primary text-white font-extrabold text-base shadow-button-p hover:-translate-y-0.5 active:translate-y-0 transition-all">
+                            Daily Quiz! 🎯
                         </button>
                     </div>
                 </div>

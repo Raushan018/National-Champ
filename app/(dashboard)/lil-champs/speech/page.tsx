@@ -126,13 +126,13 @@ export default function SpeechSubmissionPage() {
 
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                             <Link href="/lil-champs" className="w-full sm:w-auto">
-                                <button className="w-full px-10 py-4 rounded-xl bg-brand-primary text-white font-black text-xl shadow-button-p hover:-translate-y-1 transition-transform flex items-center justify-center gap-3">
-                                    Back to Arena <ArrowLeft className="w-6 h-6" />
+                                <button className="w-full px-8 py-3 rounded-xl bg-brand-primary text-white font-extrabold text-lg shadow-button-p hover:-translate-y-0.5 transition-transform flex items-center justify-center gap-2">
+                                    Back to Arena <ArrowLeft className="w-5 h-5" />
                                 </button>
                             </Link>
                             <Link href="/dashboard" className="w-full sm:w-auto">
-                                <button className="w-full px-10 py-4 rounded-xl bg-white border-2 border-brand-primary text-brand-primary font-black text-xl hover:bg-surface-bg transition-colors">
-                                    Go to Dashboard
+                                <button className="w-full px-8 py-3 rounded-xl bg-white border-2 border-brand-primary text-brand-primary font-extrabold text-lg hover:bg-surface-bg transition-colors">
+                                    Dashboard
                                 </button>
                             </Link>
                         </div>
@@ -177,9 +177,9 @@ export default function SpeechSubmissionPage() {
                                 {phase === "ready" && (
                                     <button
                                         onClick={handleStart}
-                                        className="px-8 py-4 rounded-2xl bg-brand-primary text-white font-black text-xl shadow-button-p hover:-translate-y-1 transition-transform flex items-center gap-3"
+                                        className="px-6 py-3 rounded-xl bg-brand-primary text-white font-extrabold text-lg shadow-button-p hover:-translate-y-0.5 transition-transform flex items-center gap-2"
                                     >
-                                        <Play className="w-6 h-6 fill-white" /> Start Recording!
+                                        <Play className="w-5 h-5 fill-white" /> Start Recording!
                                     </button>
                                 )}
 
@@ -196,15 +196,15 @@ export default function SpeechSubmissionPage() {
                                     <>
                                         <button
                                             onClick={() => setPhase("ready")}
-                                            className="px-8 py-4 rounded-2xl bg-white border-2 border-brand-primary text-brand-primary font-black text-lg hover:bg-brand-primary hover:text-white transition-all flex items-center gap-2"
+                                            className="px-6 py-3 rounded-xl bg-white border-2 border-brand-primary text-brand-primary font-extrabold text-base hover:bg-brand-primary hover:text-white transition-all flex items-center gap-2"
                                         >
-                                            <RefreshCcw className="w-5 h-5" /> Try Again
+                                            <RefreshCcw className="w-4 h-4" /> Try Again
                                         </button>
                                         <button
                                             onClick={() => setPhase("submitted")}
-                                            className="px-10 py-5 rounded-2xl bg-brand-success text-white font-black text-xl shadow-button-s hover:-translate-y-1 transition-transform flex items-center gap-3"
+                                            className="px-8 py-3.5 rounded-xl bg-brand-success text-white font-extrabold text-lg shadow-button-s hover:-translate-y-0.5 transition-transform flex items-center gap-2"
                                         >
-                                            <Send className="w-6 h-6" /> Submit Now!
+                                            <Send className="w-5 h-5" /> Submit Now!
                                         </button>
                                     </>
                                 )}

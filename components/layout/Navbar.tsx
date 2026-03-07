@@ -34,18 +34,15 @@ export function Navbar() {
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-14">
-                    {/* 20% Left Alignment Spacer */}
-                    <div className="flex-[0.2] hidden md:block" />
-
-                    {/* Nav Links */}
-                    <div className="flex-1 flex items-center justify-start gap-6">
+                    {/* Nav Links Container */}
+                    <div className="flex-1 flex items-center justify-start ml-[10%] lg:ml-[20%] gap-2 lg:gap-4">
                         {NAV_LINKS.map((link) => (
                             <Link key={link.href} href={link.href}>
                                 <span className={cn(
-                                    "flex items-center gap-2 text-sm font-black transition-colors px-3 py-1.5 rounded-xl hover:bg-surface-bg",
-                                    pathname === link.href ? "text-brand-primary bg-surface-bg" : "text-ink-secondary hover:text-brand-primary"
+                                    "flex items-center gap-2 text-[13px] font-extrabold transition-colors px-3 py-1.5 rounded-xl hover:bg-surface-bg whitespace-nowrap",
+                                    pathname === link.href ? "text-brand-primary bg-surface-bg ring-2 ring-brand-primary/10" : "text-ink-secondary hover:text-brand-primary font-bold"
                                 )}>
-                                    <link.icon className="w-4 h-4" />
+                                    <link.icon className="w-4 h-4 shrink-0" />
                                     {link.label}
                                 </span>
                             </Link>
@@ -53,21 +50,23 @@ export function Navbar() {
                     </div>
 
                     {/* Right Side: Help, Notify, Auth */}
-                    <div className="flex-1 flex items-center justify-end gap-3">
-                        <button className="p-2 rounded-xl bg-surface-bg text-brand-primary hover:bg-brand-primary/10 transition-all border-2 border-transparent hover:border-brand-primary/10">
-                            <HelpCircle className="w-5 h-5" />
+                    <div className="flex-1 flex items-center justify-end gap-2.5">
+                        <button className="p-1.5 rounded-lg bg-surface-bg/50 text-ink-secondary hover:bg-brand-primary/10 hover:text-brand-primary transition-all">
+                            <HelpCircle className="w-4.5 h-4.5" />
                         </button>
-                        <button className="p-2 rounded-xl bg-surface-bg text-brand-primary hover:bg-brand-primary/10 transition-all border-2 border-transparent hover:border-brand-primary/10 mr-1">
-                            <Bell className="w-5 h-5" />
+                        <button className="p-1.5 rounded-lg bg-surface-bg/50 text-ink-secondary hover:bg-brand-primary/10 hover:text-brand-primary transition-all">
+                            <Bell className="w-4.5 h-4.5" />
                         </button>
 
+                        <div className="h-6 w-px bg-brand-primary/10 mx-1 hidden sm:block" />
+
                         <Link href="/login">
-                            <button className="px-5 py-2 rounded-xl text-base font-black text-brand-primary border-2 border-brand-primary hover:bg-brand-primary hover:text-white transition-all transform active:scale-95">
+                            <button className="px-4 py-2 rounded-xl text-sm font-extrabold text-brand-primary hover:bg-brand-primary/5 transition-all active:scale-95 whitespace-nowrap">
                                 Log in
                             </button>
                         </Link>
                         <Link href="/register">
-                            <button className="px-6 py-2 rounded-xl text-base font-black text-white bg-brand-accent shadow-button-a hover:-translate-y-0.5 active:translate-y-0 transition-all transform">
+                            <button className="px-5 py-2 rounded-xl text-sm font-extrabold text-white bg-brand-accent shadow-button-a hover:-translate-y-0.5 active:translate-y-0 transition-all whitespace-nowrap">
                                 Join Now!
                             </button>
                         </Link>

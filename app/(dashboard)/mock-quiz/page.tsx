@@ -38,9 +38,17 @@ const CATEGORIES = [
     { id: "coding", name: "Code Hero 💻", icon: Code2, color: "bg-brand-accent", border: "border-brand-accent/20" },
 ];
 
+interface Category {
+    id: string;
+    name: string;
+    icon: any;
+    color: string;
+    border: string;
+}
+
 export default function MockQuizPage() {
     const [quizStarted, setQuizStarted] = useState(false);
-    const [selectedCategory, setSelectedCategory] = useState<any>(null);
+    const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
     const [currentIdx, setCurrentIdx] = useState(0);
     const [answers, setAnswers] = useState<(number | null)[]>([]);
     const [timeLeft, setTimeLeft] = useState(600); // 10 minutes
@@ -61,7 +69,7 @@ export default function MockQuizPage() {
         setAnswers(newAnswers);
     };
 
-    const handleStart = (cat: any) => {
+    const handleStart = (cat: Category) => {
         setSelectedCategory(cat);
         setAnswers(new Array(QUESTIONS.length).fill(null));
         setQuizStarted(true);
@@ -120,7 +128,7 @@ export default function MockQuizPage() {
 
     // ── Results Screen ──
     if (submitted) {
-        const score = answers.reduce((acc, a, i) => acc + (a === QUESTIONS[i].correct ? 1 : 0), 0);
+        const score = answers.reduce((acc: number, a, i) => acc + (a === QUESTIONS[i].correct ? 1 : 0), 0);
         return (
             <div className="max-w-2xl mx-auto py-20 text-center">
                 <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="mb-10">
@@ -159,6 +167,8 @@ export default function MockQuizPage() {
 
     // ── Quiz Interface ──
     const q = QUESTIONS[currentIdx];
+
+    if (!selectedCategory) return null;
 
     return (
         <div className="max-w-4xl mx-auto py-10 space-y-10">

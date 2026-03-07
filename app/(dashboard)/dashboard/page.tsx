@@ -60,7 +60,7 @@ export default function DashboardPage() {
                     </div>
                 </div>
                 <div className="flex gap-3">
-                    <button className="px-6 py-3 rounded-2xl bg-brand-primary text-white font-black text-lg shadow-button-p hover:-translate-y-1 active:translate-y-0.5 transition-all">
+                    <button className="px-5 py-2.5 rounded-xl bg-brand-primary text-white font-extrabold text-base shadow-button-p hover:-translate-y-0.5 active:translate-y-0 transition-all">
                         Daily Quiz! 🎯
                     </button>
                 </div>
@@ -144,7 +144,7 @@ export default function DashboardPage() {
                         <div className="text-center sm:text-left">
                             <h3 className="font-heading font-black text-2xl mb-1">New Arena Unlocked! 🔓</h3>
                             <p className="text-lg font-bold text-white/90 mb-4">Space Exploration GK Challenge is live!</p>
-                            <button className="px-8 py-3 bg-white text-brand-accent rounded-xl text-lg font-black shadow-lg hover:bg-brand-success hover:text-white transition-colors flex items-center gap-2">
+                            <button className="px-6 py-2.5 bg-white text-brand-accent rounded-lg text-base font-extrabold shadow-md hover:-translate-y-0.5 transition-colors flex items-center gap-2">
                                 Leap into Action! <ArrowRight className="w-5 h-5" />
                             </button>
                         </div>
