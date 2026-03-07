@@ -1,0 +1,495 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   CSS VARIABLES — DESIGN TOKENS
+   ============================================================ */
+@layer base {
+  :root {
+    /* --- Shadcn/Radix compatibility --- */
+    --background: 220 20% 97%;
+    --foreground: 222 47% 7%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 7%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 7%;
+    --primary: 243 75% 59%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 192 91% 44%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
+    --accent: 25 95% 53%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 243 75% 59%;
+    --radius: 0.625rem;
+
+    /* --- Brand design tokens --- */
+    --color-primary: #4F46E5;
+    --color-primary-light: #6366F1;
+    --color-primary-dark: #3730A3;
+    --color-secondary: #06B6D4;
+    --color-accent: #F97316;
+    --color-success: #22C55E;
+    --color-warning: #FACC15;
+    --color-danger: #EF4444;
+
+    /* --- Surfaces --- */
+    --surface-bg: #F5F7FB;
+    --surface-card: #FFFFFF;
+    --surface-border: #E5E7EB;
+    --surface-hover: #F9FAFB;
+
+    /* --- Sidebar --- */
+    --sidebar-width: 16.5rem;
+    --sidebar-collapsed-width: 4.75rem;
+    --topbar-height: 4rem;
+
+    /* --- Typography --- */
+    --font-heading: var(--font-poppins);
+    --font-body: var(--font-inter);
+
+    /* --- Transitions --- */
+    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-spring: 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .dark {
+    --background: 222 47% 7%;
+    --foreground: 220 20% 97%;
+    --card: 222 47% 10%;
+    --card-foreground: 220 20% 97%;
+    --popover: 222 47% 10%;
+    --popover-foreground: 220 20% 97%;
+    --primary: 243 75% 65%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 192 91% 50%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 222 47% 15%;
+    --muted-foreground: 220 9% 60%;
+    --accent: 25 95% 60%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 222 47% 18%;
+    --input: 222 47% 18%;
+    --ring: 243 75% 65%;
+
+    --surface-bg: #0D1117;
+    --surface-card: #161B22;
+    --surface-border: #21262D;
+    --surface-hover: #1C2128;
+
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    font-family: var(--font-inter), system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-surface-bg text-ink-primary;
+    font-family: var(--font-body), system-ui, sans-serif;
+    min-height: 100vh;
+  }
+
+  /* Headings use Poppins */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading), system-ui, sans-serif;
+    @apply font-semibold tracking-tight;
+  }
+
+  /* Selection styling */
+  ::selection {
+    background-color: rgba(79, 70, 229, 0.15);
+    color: #111827;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #D1D5DB;
+    border-radius: 100px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #9CA3AF;
+  }
+
+  /* focus ring */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-brand-primary ring-offset-2;
+  }
+}
+
+
+/* ============================================================
+   COMPONENT LAYER — Reusable component classes
+   ============================================================ */
+@layer components {
+
+  /* --- Card variants --- */
+  .nc-card {
+    @apply bg-surface-card rounded-xl border border-surface-border shadow-card;
+    transition: box-shadow var(--transition-base), transform var(--transition-base);
+  }
+
+  .nc-card-hover {
+    @apply nc-card;
+    cursor: pointer;
+  }
+
+  .nc-card-hover:hover {
+    @apply shadow-card-hover;
+    transform: translateY(-1px);
+  }
+
+  .nc-card-gradient {
+    @apply nc-card bg-gradient-card;
+  }
+
+  /* --- Stat card --- */
+  .nc-stat-card {
+    @apply nc-card p-6 flex flex-col gap-3;
+  }
+
+  /* --- Section title --- */
+  .nc-section-title {
+    @apply font-heading text-xl font-semibold text-ink-primary;
+  }
+
+  .nc-section-subtitle {
+    @apply text-sm text-ink-secondary font-body;
+  }
+
+  /* --- Badge variants --- */
+  .nc-badge {
+    @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .nc-badge-primary {
+    @apply nc-badge bg-surface-selected text-brand-primary;
+  }
+
+  .nc-badge-success {
+    @apply nc-badge bg-success-bg text-success-dark;
+  }
+
+  .nc-badge-warning {
+    @apply nc-badge bg-warning-bg text-warning-dark;
+  }
+
+  .nc-badge-danger {
+    @apply nc-badge bg-danger-bg text-danger-dark;
+  }
+
+  .nc-badge-secondary {
+    @apply nc-badge bg-cyan-50 text-cyan-700;
+  }
+
+  .nc-badge-neutral {
+    @apply nc-badge bg-surface-bg text-ink-secondary;
+  }
+
+  /* --- Avatar --- */
+  .nc-avatar {
+    @apply relative flex items-center justify-center rounded-full overflow-hidden bg-gradient-brand font-heading font-semibold text-white;
+  }
+
+  /* --- Progress bar --- */
+  .nc-progress {
+    @apply w-full bg-surface-border rounded-full overflow-hidden;
+  }
+
+  .nc-progress-bar {
+    @apply h-full rounded-full transition-all duration-700 ease-out;
+  }
+
+
+
+  /* --- Button variants --- */
+  .nc-btn {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-150 cursor-pointer select-none;
+    font-family: var(--font-body);
+  }
+
+  .nc-btn:disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+
+  .nc-btn-primary {
+    @apply nc-btn bg-brand-primary text-white shadow-sm;
+  }
+
+  .nc-btn-primary:hover:not(:disabled) {
+    @apply bg-brand-primary-dark shadow-glow;
+    transform: translateY(-1px);
+  }
+
+  .nc-btn-primary:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  .nc-btn-secondary {
+    @apply nc-btn bg-surface-card text-ink-primary border border-surface-border shadow-sm;
+  }
+
+  .nc-btn-secondary:hover:not(:disabled) {
+    @apply bg-surface-hover border-surface-border-strong;
+  }
+
+  .nc-btn-ghost {
+    @apply nc-btn text-ink-secondary;
+  }
+
+  .nc-btn-ghost:hover:not(:disabled) {
+    @apply bg-surface-hover text-ink-primary;
+  }
+
+  .nc-btn-danger {
+    @apply nc-btn bg-danger text-white;
+  }
+
+  .nc-btn-danger:hover:not(:disabled) {
+    @apply bg-danger-dark shadow-glow-orange;
+    transform: translateY(-1px);
+  }
+
+  /* --- Input --- */
+  .nc-input {
+    @apply w-full px-3.5 py-2.5 rounded-lg border border-surface-border bg-surface-card text-sm text-ink-primary placeholder:text-ink-tertiary transition-all duration-150;
+  }
+
+  .nc-input:focus {
+    @apply outline-none border-brand-primary shadow-glow;
+  }
+
+  /* --- Table --- */
+  .nc-table {
+    @apply w-full text-sm;
+  }
+
+  .nc-table thead tr {
+    @apply border-b border-surface-border;
+  }
+
+  .nc-table thead th {
+    @apply px-4 py-3 text-left text-xs font-semibold text-ink-secondary uppercase tracking-wider;
+  }
+
+  .nc-table tbody tr {
+    @apply border-b border-surface-border transition-colors duration-100;
+  }
+
+  .nc-table tbody tr:last-child {
+    @apply border-b-0;
+  }
+
+  .nc-table tbody tr:hover {
+    @apply bg-surface-hover;
+  }
+
+  .nc-table tbody td {
+    @apply px-4 py-3.5 text-ink-primary;
+  }
+
+  /* --- Skeleton loader --- */
+  .nc-skeleton {
+    @apply bg-surface-border rounded animate-pulse;
+  }
+
+  /* --- Divider --- */
+  .nc-divider {
+    @apply w-full h-px bg-surface-border;
+  }
+
+  /* --- Tooltip wrapper --- */
+  .nc-tooltip {
+    @apply relative group;
+  }
+
+  /* --- Gradient text --- */
+  .nc-gradient-text {
+    @apply bg-gradient-brand bg-clip-text text-transparent;
+  }
+
+  /* --- Status dot --- */
+  .nc-status-dot {
+    @apply w-2 h-2 rounded-full inline-block;
+  }
+
+  .nc-status-dot-success {
+    @apply nc-status-dot bg-success;
+  }
+
+  .nc-status-dot-warning {
+    @apply nc-status-dot bg-warning;
+  }
+
+  .nc-status-dot-danger {
+    @apply nc-status-dot bg-danger;
+  }
+
+  .nc-status-dot-neutral {
+    @apply nc-status-dot bg-ink-tertiary;
+  }
+
+  /* --- Chart container --- */
+  .nc-chart-container {
+    @apply relative w-full;
+  }
+
+  /* --- Page header --- */
+  .nc-page-header {
+    @apply flex flex-col gap-1 mb-8;
+  }
+
+  .nc-page-title {
+    @apply font-heading text-2xl font-bold text-ink-primary sm:text-3xl;
+  }
+
+  .nc-page-description {
+    @apply text-base text-ink-secondary font-body;
+  }
+
+  /* --- Shimmer loading effect --- */
+  .nc-shimmer {
+    background: linear-gradient(90deg,
+        hsl(var(--muted)) 25%,
+        hsl(var(--muted-foreground) / 0.1) 50%,
+        hsl(var(--muted)) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+  }
+
+  /* --- Empty state --- */
+  .nc-empty-state {
+    @apply flex flex-col items-center justify-center py-16 px-4 text-center;
+  }
+
+  .nc-empty-state-icon {
+    @apply w-16 h-16 rounded-2xl bg-surface-bg flex items-center justify-center mb-4 text-ink-tertiary;
+  }
+
+  /* --- Alert --- */
+  .nc-alert {
+    @apply flex items-start gap-3 p-4 rounded-xl border text-sm;
+  }
+
+  .nc-alert-info {
+    @apply nc-alert bg-surface-selected border-brand-primary/20 text-brand-primary;
+  }
+
+  .nc-alert-success {
+    @apply nc-alert bg-success-bg border-success/20 text-success-dark;
+  }
+
+  .nc-alert-warning {
+    @apply nc-alert bg-warning-bg border-warning/20 text-warning-dark;
+  }
+
+  .nc-alert-danger {
+    @apply nc-alert bg-danger-bg border-danger/20 text-danger-dark;
+  }
+}
+
+
+/* ============================================================
+   UTILITIES LAYER — Custom one-off utilities
+   ============================================================ */
+@layer utilities {
+
+  /* Scrollbar hide utility */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Text utilities */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* Transition preset */
+  .transition-base {
+    transition: all var(--transition-base);
+  }
+
+  .transition-fast {
+    transition: all var(--transition-fast);
+  }
+
+  .transition-spring {
+    transition: all var(--transition-spring);
+  }
+
+  /* Glass morphism */
+  .glass {
+    @apply bg-white/70 backdrop-blur-md border border-white/30;
+  }
+
+  .glass-dark {
+    @apply bg-black/30 backdrop-blur-md border border-white/10;
+  }
+
+  /* Gradient border trick */
+  .gradient-border {
+    position: relative;
+    background-clip: padding-box;
+  }
+
+  .gradient-border::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, #4F46E5, #06B6D4);
+    z-index: -1;
+  }
+
+  /* Responsive show/hide */
+  .show-mobile {
+    @apply block sm:hidden;
+  }
+
+  .hide-mobile {
+    @apply hidden sm:block;
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "/(dashboard)/dashboard/page": "app/(dashboard)/dashboard/page.js",
+  "/(dashboard)/competitions/page": "app/(dashboard)/competitions/page.js",
+  "/(dashboard)/mock-quiz/page": "app/(dashboard)/mock-quiz/page.js",
+  "/(dashboard)/achievements/page": "app/(dashboard)/achievements/page.js",
+  "/(dashboard)/settings/page": "app/(dashboard)/settings/page.js",
+  "/(dashboard)/leaderboard/page": "app/(dashboard)/leaderboard/page.js"
+}
