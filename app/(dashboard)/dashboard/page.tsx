@@ -1,29 +1,37 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import {
     Trophy,
     Star,
     Target,
     BookOpen,
-    TrendingUp,
     Medal,
     GraduationCap,
     Clock,
     CheckCircle2,
     ArrowRight,
     Sparkles,
-    Rocket
+    Rocket,
+    Eye,
+    FileText
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 /* ── Mock Data for Kids ────────────────────────────────────────── */
 const STATS = [
-    { label: "My Score", value: "850", icon: Trophy, color: "bg-brand-primary", shadow: "shadow-[0_8px_0_0_#3A83D8]", unit: "pts" },
-    { label: "Rank", value: "#12", icon: Star, color: "bg-brand-secondary", shadow: "shadow-[0_8px_0_0_#E6C100]", unit: "National" },
-    { label: "Challenges", value: "8/12", icon: BookOpen, color: "bg-brand-purple", shadow: "shadow-[0_8px_0_0_#8B5CF6]", unit: "Done" },
+    { label: "Applied", value: "12", icon: GraduationCap, color: "bg-brand-primary", shadow: "shadow-[0_8px_0_0_#3A83D8]", unit: "Competitions" },
+    { label: "Inprogress", value: "5", icon: Clock, color: "bg-brand-secondary", shadow: "shadow-[0_8px_0_0_#E6C100]", unit: "Ongoing" },
+    { label: "Not Applied", value: "7", icon: BookOpen, color: "bg-brand-purple", shadow: "shadow-[0_8px_0_0_#8B5CF6]", unit: "Remaining" },
     { label: "Progress", value: "72%", icon: Target, color: "bg-brand-success", shadow: "shadow-[0_8px_0_0_#3BB550]", unit: "Super!" },
+];
+
+const APPLICATIONS = [
+    { slug: "english", name: "English Wizards 📚", appliedDate: "10 Mar 2026", status: "Under Review", statusColor: "bg-brand-secondary/10 text-brand-secondary", icon: BookOpen, color: "bg-brand-purple" },
+    { slug: "maths", name: "Maths Masters ➗", appliedDate: "08 Mar 2026", status: "Approved", statusColor: "bg-brand-success/10 text-brand-success", icon: Trophy, color: "bg-brand-primary" },
+    { slug: "gk", name: "GK Explorers 🌍", appliedDate: "05 Mar 2026", status: "Inprogress", statusColor: "bg-brand-accent/10 text-brand-accent", icon: Target, color: "bg-brand-success" },
 ];
 
 const STUDENTS = [
@@ -95,43 +103,53 @@ export default function DashboardPage() {
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
 
-                {/* ── Progress Tracking ──────────────────────────────────── */}
+                {/* ── Current Applied Status ─────────────────────────────── */}
                 <div className="lg:col-span-2 space-y-8">
                     <section className="bg-white p-8 rounded-3xl border-4 border-brand-secondary/20 shadow-card relative overflow-hidden">
                         <div className="flex items-center justify-between mb-8">
                             <div>
-                                <h2 className="font-heading font-black text-2xl text-ink-primary">My Learning Journey 🚀</h2>
-                                <p className="text-base text-ink-tertiary font-bold">You are doing great!</p>
+                                <h2 className="font-heading font-black text-2xl text-ink-primary">Current Applied Status 📋</h2>
+                                <p className="text-base text-ink-tertiary font-bold">Track your competition applications</p>
                             </div>
-                            <div className="p-3 bg-brand-secondary/10 rounded-2xl">
-                                <TrendingUp className="w-8 h-8 text-brand-secondary" />
+                            <div className="p-3 bg-brand-primary/10 rounded-2xl">
+                                <GraduationCap className="w-8 h-8 text-brand-primary" />
                             </div>
                         </div>
 
-                        {/* Fun Progress Bars */}
-                        <div className="space-y-8">
-                            {[
-                                { label: "Maths Wizardry 🪄", val: 85, color: "bg-brand-primary" },
-                                { label: "Grammar Power 📖", val: 65, color: "bg-brand-purple" },
-                                { label: "Code Crafting 💻", val: 45, color: "bg-brand-accent" }
-                            ].map(p => (
-                                <div key={p.label} className="space-y-2">
-                                    <div className="flex justify-between items-center text-lg font-black text-ink-primary">
-                                        <span>{p.label}</span>
-                                        <span className="text-brand-primary">{p.val}%</span>
+                        <div className="space-y-4">
+                            {APPLICATIONS.map((app, idx) => (
+                                <motion.div
+                                    key={app.name}
+                                    initial={{ opacity: 0, x: -20 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: idx * 0.1 }}
+                                    className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 rounded-2xl border-2 border-surface-border bg-surface-bg hover:bg-white hover:shadow-card transition-all"
+                                >
+                                    <div className="flex items-center gap-4">
+                                        <div className={cn("w-12 h-12 rounded-xl flex items-center justify-center text-white shadow-md shrink-0", app.color)}>
+                                            <app.icon className="w-6 h-6" />
+                                        </div>
+                                        <div>
+                                            <p className="font-black text-ink-primary text-base">{app.name}</p>
+                                            <p className="text-xs font-bold text-ink-tertiary">Applied: {app.appliedDate}</p>
+                                        </div>
                                     </div>
-                                    <div className="h-6 bg-surface-bg rounded-full border-2 border-brand-primary/5 p-1 overflow-hidden">
-                                        <motion.div
-                                            initial={{ width: 0 }}
-                                            animate={{ width: `${p.val}%` }}
-                                            transition={{ duration: 1.5, ease: "easeOut" }}
-                                            className={cn("h-full rounded-full shadow-inner relative", p.color)}
-                                        >
-                                            {/* Shimmer overlay */}
-                                            <div className="absolute inset-0 bg-white/20 animate-pulse" />
-                                        </motion.div>
+                                    <div className="flex items-center gap-3 sm:ml-auto">
+                                        <span className={cn("px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider whitespace-nowrap", app.statusColor)}>
+                                            {app.status}
+                                        </span>
+                                        <Link href={`/competitions/${app.slug}/status`}>
+                                            <span className="flex items-center gap-1.5 px-4 py-2 rounded-xl border-2 border-brand-primary/20 text-brand-primary font-extrabold text-xs hover:bg-brand-primary hover:text-white transition-all whitespace-nowrap cursor-pointer">
+                                                <Eye className="w-3.5 h-3.5" /> View Status
+                                            </span>
+                                        </Link>
+                                        <Link href={`/competitions/${app.slug}/application`}>
+                                            <span className="flex items-center gap-1.5 px-4 py-2 rounded-xl border-2 border-brand-purple/20 text-brand-purple font-extrabold text-xs hover:bg-brand-purple hover:text-white transition-all whitespace-nowrap cursor-pointer">
+                                                <FileText className="w-3.5 h-3.5" /> View Application
+                                            </span>
+                                        </Link>
                                     </div>
-                                </div>
+                                </motion.div>
                             ))}
                         </div>
                     </section>

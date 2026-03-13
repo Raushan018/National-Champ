@@ -191,13 +191,13 @@ export default function CompetitionsPage() {
                                 {comp.desc}
                             </p>
 
-                            <Link href={comp.slug === "lil-champs" ? "/lil-champs" : `/competitions/${comp.slug}`} className="w-full">
+                            <Link href={`/competitions/${comp.slug}`} className="w-full">
                                 <button className={cn(
                                     "w-full py-2.5 rounded-xl text-base font-extrabold text-white transition-all transform",
                                     comp.color, comp.shadow,
                                     "hover:-translate-y-0.5 active:scale-95 flex items-center justify-center gap-2"
                                 )}>
-                                    Let&apos;s Play! <Rocket className="w-4 h-4" />
+                                    Apply Now <ArrowRight className="w-4 h-4" />
                                 </button>
                             </Link>
                         </div>
