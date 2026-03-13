@@ -1,10 +1,4 @@
 {
-  "/(dashboard)/dashboard/page": "app/(dashboard)/dashboard/page.js",
-  "/(dashboard)/lil-champs/page": "app/(dashboard)/lil-champs/page.js",
-  "/(dashboard)/mock-quiz/page": "app/(dashboard)/mock-quiz/page.js",
   "/page": "app/page.js",
-  "/(dashboard)/leaderboard/page": "app/(dashboard)/leaderboard/page.js",
-  "/(dashboard)/competitions/page": "app/(dashboard)/competitions/page.js",
-  "/(dashboard)/competitions/[slug]/status/page": "app/(dashboard)/competitions/[slug]/status/page.js",
-  "/(dashboard)/competitions/[slug]/application/page": "app/(dashboard)/competitions/[slug]/application/page.js"
+  "/(dashboard)/dashboard/page": "app/(dashboard)/dashboard/page.js"
 }

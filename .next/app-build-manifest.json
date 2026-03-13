@@ -15,46 +15,6 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/(dashboard)/dashboard/page.js"
-    ],
-    "/(dashboard)/competitions/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(dashboard)/competitions/page.js"
-    ],
-    "/(dashboard)/mock-quiz/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(dashboard)/mock-quiz/page.js"
-    ],
-    "/(dashboard)/competitions/[slug]/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(dashboard)/competitions/[slug]/page.js"
-    ],
-    "/(dashboard)/lil-champs/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(dashboard)/lil-champs/page.js"
-    ],
-    "/(dashboard)/leaderboard/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(dashboard)/leaderboard/page.js"
-    ],
-    "/(dashboard)/lil-champs/speech/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(dashboard)/lil-champs/speech/page.js"
-    ],
-    "/(dashboard)/competitions/[slug]/status/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(dashboard)/competitions/[slug]/status/page.js"
-    ],
-    "/(dashboard)/competitions/[slug]/application/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(dashboard)/competitions/[slug]/application/page.js"
     ]
   }
 }
