@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import {
     Trophy,
@@ -19,6 +20,7 @@ import {
     FileText
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import studentProfileImage from "@/assets/image.png";
 
 /* ── Mock Data for Kids ────────────────────────────────────────── */
 const STATS = [
@@ -44,15 +46,21 @@ const STUDENTS = [
 
 export default function DashboardPage() {
     return (
-        <div className="space-y-10 pb-12">
+        <div className="space-y-8 pb-10">
 
             {/* ── Welcome Header ──────────────────────────────────────── */}
-            <header className="flex flex-col md:flex-row items-center justify-between gap-6 bg-white p-6 sm:p-8 rounded-3xl border-4 border-brand-primary/10 shadow-card">
-                <div className="flex flex-col sm:flex-row items-center gap-5 text-center sm:text-left">
+            <header className="relative flex flex-col md:flex-row items-center justify-between gap-5 overflow-hidden rounded-3xl border-4 border-white/70 bg-[linear-gradient(115deg,#bfdbfe_0%,#dbeafe_32%,#fce7f3_66%,#f9a8d4_100%)] bg-[length:200%_200%] p-5 shadow-[0_10px_24px_rgba(96,165,250,0.18),0_4px_12px_rgba(244,114,182,0.14)] animate-welcome-gradient sm:p-6">
+                <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_12%_20%,rgba(255,255,255,0.8),transparent_22%),radial-gradient(circle_at_88%_78%,rgba(255,255,255,0.62),transparent_25%)]" />
+                <div className="relative z-10 flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
                     <div className="relative">
-                        <div className="w-20 h-20 rounded-2xl bg-brand-primary flex items-center justify-center text-white text-3xl shadow-button-p -rotate-3 overflow-hidden">
-                            {/* Cartoon Avatar Placeholder */}
-                            <span className="text-4xl opacity-80">👦</span>
+                        <div className="relative w-20 h-20 rounded-2xl bg-brand-primary shadow-button-p -rotate-3 overflow-hidden">
+                            <Image
+                                src={studentProfileImage}
+                                alt="Student profile"
+                                fill
+                                sizes="80px"
+                                className="object-cover object-[center_20%]"
+                            />
                         </div>
                         <div className="absolute -bottom-1 -right-1 w-8 h-8 bg-brand-success rounded-full flex items-center justify-center border-2 border-white shadow-md animate-bounce">
                             <Sparkles className="w-4 h-4 text-white" />
@@ -60,22 +68,22 @@ export default function DashboardPage() {
                     </div>
                     <div>
                         <h1 className="font-heading font-black text-3xl text-ink-primary mb-1">
-                            Hi Champion! 🎉
+                            Hi Priya!
                         </h1>
                         <p className="text-xl text-ink-secondary font-bold">
-                            Ready for your next challenge? 🧠✨
+                            Class 5 • Student ID: NC-2026-001
                         </p>
                     </div>
                 </div>
-                <div className="flex gap-3">
-                    <button className="px-5 py-2.5 rounded-xl bg-brand-primary text-white font-extrabold text-base shadow-button-p hover:-translate-y-0.5 active:translate-y-0 transition-all">
+                <div className="relative z-10 flex gap-3">
+                    <button className="rounded-xl bg-gradient-to-r from-brand-primary to-pink-500 px-5 py-2.5 text-base font-extrabold text-white shadow-[0_4px_0_0_#3A83D8] transition-all hover:-translate-y-0.5 active:translate-y-0">
                         Daily Quiz! 🎯
                     </button>
                 </div>
             </header>
 
             {/* ── Stat Cards ─────────────────────────────────────────── */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 justify-items-center gap-6 sm:grid-cols-2 lg:grid-cols-4">
                 {STATS.map((stat, idx) => (
                     <motion.div
                         key={stat.label}
@@ -83,16 +91,16 @@ export default function DashboardPage() {
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         transition={{ delay: idx * 0.1, type: "spring", stiffness: 300 }}
                         className={cn(
-                            "relative p-6 rounded-3xl bg-white border-4 border-brand-primary/5 flex flex-col items-center text-center group hover:-translate-y-2 transition-transform duration-300 shadow-card"
+                            "relative flex w-full flex-col items-center rounded-2xl border-4 border-brand-primary/5 bg-white p-3 text-center shadow-card transition-transform duration-300 group hover:-translate-y-2 lg:max-w-[16rem]"
                         )}
                     >
-                        <div className={cn("w-16 h-16 rounded-2xl flex items-center justify-center text-white mb-4 shadow-lg", stat.color)}>
-                            <stat.icon className="w-8 h-8" />
+                        <div className={cn("mb-2 flex h-12 w-12 items-center justify-center rounded-xl text-white shadow-lg", stat.color)}>
+                            <stat.icon className="h-6 w-6" />
                         </div>
-                        <h3 className="text-ink-secondary font-black text-sm uppercase tracking-widest mb-1">{stat.label}</h3>
-                        <div className="flex items-baseline gap-2">
-                            <span className="text-4xl font-heading font-black text-ink-primary">{stat.value}</span>
-                            <span className="text-lg font-bold text-ink-tertiary">{stat.unit}</span>
+                        <h3 className="mb-0.5 text-xs font-black uppercase tracking-widest text-ink-secondary">{stat.label}</h3>
+                        <div className="flex items-baseline gap-1.5">
+                            <span className="font-heading text-3xl font-black text-ink-primary">{stat.value}</span>
+                            <span className="text-base font-bold text-ink-tertiary">{stat.unit}</span>
                         </div>
 
                         {/* Decorative background shape */}
@@ -101,12 +109,12 @@ export default function DashboardPage() {
                 ))}
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
                 {/* ── Current Applied Status ─────────────────────────────── */}
-                <div className="lg:col-span-2 space-y-8">
-                    <section className="bg-white p-8 rounded-3xl border-4 border-brand-secondary/20 shadow-card relative overflow-hidden">
-                        <div className="flex items-center justify-between mb-8">
+                <div className="lg:col-span-2 space-y-6">
+                    <section className="bg-white p-6 rounded-3xl border-4 border-brand-secondary/20 shadow-card relative overflow-hidden">
+                        <div className="flex items-center justify-between mb-6">
                             <div>
                                 <h2 className="font-heading font-black text-2xl text-ink-primary">Current Applied Status 📋</h2>
                                 <p className="text-base text-ink-tertiary font-bold">Track your competition applications</p>
@@ -116,36 +124,36 @@ export default function DashboardPage() {
                             </div>
                         </div>
 
-                        <div className="space-y-4">
+                        <div className="space-y-3">
                             {APPLICATIONS.map((app, idx) => (
                                 <motion.div
                                     key={app.name}
                                     initial={{ opacity: 0, x: -20 }}
                                     animate={{ opacity: 1, x: 0 }}
                                     transition={{ delay: idx * 0.1 }}
-                                    className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 rounded-2xl border-2 border-surface-border bg-surface-bg hover:bg-white hover:shadow-card transition-all"
+                                    className="flex flex-col justify-between gap-2 rounded-2xl border-2 border-surface-border bg-surface-bg p-3 transition-all hover:bg-white hover:shadow-card sm:flex-row sm:items-center"
                                 >
-                                    <div className="flex items-center gap-4">
-                                        <div className={cn("w-12 h-12 rounded-xl flex items-center justify-center text-white shadow-md shrink-0", app.color)}>
-                                            <app.icon className="w-6 h-6" />
+                                    <div className="flex items-center gap-3">
+                                        <div className={cn("flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-white shadow-md", app.color)}>
+                                            <app.icon className="h-5 w-5" />
                                         </div>
                                         <div>
-                                            <p className="font-black text-ink-primary text-base">{app.name}</p>
+                                            <p className="text-sm font-black text-ink-primary">{app.name}</p>
                                             <p className="text-xs font-bold text-ink-tertiary">Applied: {app.appliedDate}</p>
                                         </div>
                                     </div>
-                                    <div className="flex items-center gap-3 sm:ml-auto">
-                                        <span className={cn("px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider whitespace-nowrap", app.statusColor)}>
+                                    <div className="flex items-center gap-2 sm:ml-auto">
+                                        <span className={cn("whitespace-nowrap rounded-full px-2.5 py-0.5 text-[11px] font-black uppercase tracking-wider", app.statusColor)}>
                                             {app.status}
                                         </span>
                                         <Link href={`/competitions/${app.slug}/status`}>
-                                            <span className="flex items-center gap-1.5 px-4 py-2 rounded-xl border-2 border-brand-primary/20 text-brand-primary font-extrabold text-xs hover:bg-brand-primary hover:text-white transition-all whitespace-nowrap cursor-pointer">
-                                                <Eye className="w-3.5 h-3.5" /> View Status
+                                            <span className="flex cursor-pointer items-center gap-1 rounded-xl border-2 border-brand-primary/20 px-3 py-1.5 text-xs font-extrabold whitespace-nowrap text-brand-primary transition-all hover:bg-brand-primary hover:text-white">
+                                                <Eye className="h-3.5 w-3.5" /> View Status
                                             </span>
                                         </Link>
                                         <Link href={`/competitions/${app.slug}/application`}>
-                                            <span className="flex items-center gap-1.5 px-4 py-2 rounded-xl border-2 border-brand-purple/20 text-brand-purple font-extrabold text-xs hover:bg-brand-purple hover:text-white transition-all whitespace-nowrap cursor-pointer">
-                                                <FileText className="w-3.5 h-3.5" /> View Application
+                                            <span className="flex cursor-pointer items-center gap-1 rounded-xl border-2 border-brand-purple/20 px-3 py-1.5 text-xs font-extrabold whitespace-nowrap text-brand-purple transition-all hover:bg-brand-purple hover:text-white">
+                                                <FileText className="h-3.5 w-3.5" /> View Application
                                             </span>
                                         </Link>
                                     </div>
@@ -155,7 +163,7 @@ export default function DashboardPage() {
                     </section>
 
                     {/* Fun Competition Row */}
-                    <div className="bg-brand-accent p-8 rounded-3xl text-white flex flex-col sm:flex-row items-center gap-8 shadow-button-a border-4 border-white group cursor-pointer hover:-translate-y-1 transition-transform">
+                    <div className="bg-brand-accent p-6 rounded-3xl text-white flex flex-col sm:flex-row items-center gap-6 shadow-button-a border-4 border-white group cursor-pointer hover:-translate-y-1 transition-transform">
                         <div className="w-24 h-24 rounded-2xl bg-white flex items-center justify-center-shrink-0 -rotate-3 group-hover:rotate-0 transition-transform">
                             <Rocket className="w-12 h-12 text-brand-accent animate-pulse" />
                         </div>
@@ -170,8 +178,8 @@ export default function DashboardPage() {
                 </div>
 
                 {/* ── Leaderboard Mini ───────────────────────────────────── */}
-                <aside className="bg-white p-8 rounded-3xl border-4 border-brand-purple/20 shadow-card">
-                    <h3 className="font-heading font-black text-xl text-ink-primary mb-6 flex items-center gap-3">
+                <aside className="bg-white p-6 rounded-3xl border-4 border-brand-purple/20 shadow-card">
+                    <h3 className="font-heading font-black text-xl text-ink-primary mb-5 flex items-center gap-3">
                         <Medal className="w-6 h-6 text-brand-purple" />
                         Top Explorers
                     </h3>
@@ -204,7 +212,7 @@ export default function DashboardPage() {
                             </div>
                         ))}
                     </div>
-                    <button className="w-full mt-6 py-3 rounded-xl border-2 border-brand-purple/20 text-brand-purple font-black text-base hover:bg-brand-purple hover:text-white transition-all">
+                    <button className="w-full mt-5 py-2.5 rounded-xl border-2 border-brand-purple/20 text-brand-purple font-black text-base hover:bg-brand-purple hover:text-white transition-all">
                         View Full List
                     </button>
                 </aside>

@@ -114,39 +114,39 @@ export default function CompetitionsPage() {
         <div className="space-y-12">
 
             {/* ── Header Area ────────────────────────────────────────── */}
-            <div className="bg-brand-primary py-8 px-10 rounded-3xl text-center shadow-card-lg relative overflow-hidden border-4 border-white">
-                <div className="absolute top-0 right-0 p-8 opacity-10">
-                    <Trophy className="w-40 h-40 text-white" />
+            <div className="relative overflow-hidden rounded-3xl border-4 border-white bg-brand-primary px-6 py-4 text-center shadow-card-lg sm:px-10">
+                <div className="absolute right-0 top-0 p-4 opacity-10">
+                    <Trophy className="h-24 w-24 text-white" />
                 </div>
 
                 <motion.div initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }}>
-                    <h1 className="font-heading font-black text-3xl sm:text-4xl text-white mb-2">
+                    <h1 className="mb-0.5 font-heading text-2xl font-black text-white sm:text-3xl">
                         The Arena of Fun! 🏆
                     </h1>
-                    <p className="text-lg text-white/90 font-bold max-w-xl mx-auto mb-6">
+                    <p className="mx-auto mb-3 max-w-xl text-sm font-bold text-white/90 sm:text-base">
                         Pick your favorite category and start your journey!
                     </p>
 
                     {/* Simplified Search for Kids */}
-                    <div className="max-w-md mx-auto relative group mb-6">
-                        <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-brand-primary" />
+                    <div className="group relative mx-auto mb-3 max-w-sm">
+                        <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-brand-primary" />
                         <input
                             type="text"
                             placeholder="Find a fun challenge..."
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
-                            className="w-full pl-14 pr-6 py-3.5 rounded-full text-lg font-bold text-ink-primary shadow-xl focus:outline-none placeholder:text-ink-tertiary border-2 border-transparent focus:border-white transition-all"
+                            className="w-full rounded-full border-2 border-transparent py-2.5 pl-11 pr-5 text-base font-bold text-ink-primary shadow-xl transition-all placeholder:text-ink-tertiary focus:border-white focus:outline-none"
                         />
                     </div>
 
                     {/* Grade Filter Chips */}
-                    <div className="flex flex-wrap items-center justify-center gap-3">
+                    <div className="flex flex-wrap items-center justify-center gap-2">
                         {["All", "Nursery - 2", "Grades 3 - 5", "Grades 6 - 9"].map((filter) => (
                             <button
                                 key={filter}
                                 onClick={() => setGradeFilter(filter)}
                                 className={cn(
-                                    "px-5 py-2 rounded-full text-sm font-black transition-all border-2",
+                                    "rounded-full border-2 px-4 py-1.5 text-xs font-black transition-all sm:text-sm",
                                     gradeFilter === filter
                                         ? "bg-white text-brand-primary border-white shadow-button-p"
                                         : "bg-white/10 text-white border-white/20 hover:bg-white/20"

@@ -2,6 +2,7 @@
 
 import React, { useState, createContext, useContext } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -19,6 +20,8 @@ import {
     Medal
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import arenaChampLogo from "@/assets/arena-champ-logo-3d.png";
+import nationalChampLogo from "@/assets/National Champ Education Logo transparent.png";
 
 /* ── Sidebar context for sharing collapsed state ───────────────── */
 interface SidebarContextType {
@@ -93,17 +96,28 @@ export function Sidebar() {
             {/* ── Logo ────────────────────────────────────────────── */}
             <div className="flex items-center justify-center mb-8 shrink-0">
                 <Link href="/" className="flex items-center gap-2">
-                    <div className="w-10 h-10 bg-brand-primary rounded-lg shadow-button-p flex items-center justify-center -rotate-6">
-                        <Trophy className="w-6 h-6 text-white" />
-                    </div>
-                    {!collapsed && (
-                        <motion.span
+                    {collapsed ? (
+                        <Image
+                            src={arenaChampLogo}
+                            alt="National Champ"
+                            width={48}
+                            height={48}
+                            priority
+                            className="h-12 w-12 shrink-0 drop-shadow-[0_4px_5px_rgba(37,99,235,0.28)]"
+                        />
+                    ) : (
+                        <motion.div
                             initial={{ opacity: 0, x: -10 }}
                             animate={{ opacity: 1, x: 0 }}
-                            className="font-heading font-black text-lg text-ink-primary tracking-tight"
+                            className="shrink-0"
                         >
-                            Arena <span className="text-brand-primary">Champ</span>
-                        </motion.span>
+                            <Image
+                                src={nationalChampLogo}
+                                alt="National Champ"
+                                priority
+                                className="h-auto w-44"
+                            />
+                        </motion.div>
                     )}
                 </Link>
             </div>

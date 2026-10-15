@@ -165,6 +165,10 @@ module.exports = {
                     "0%, 100%": { transform: "translateY(0px)" },
                     "50%": { transform: "translateY(-6px)" },
                 },
+                "welcome-gradient": {
+                    "0%, 100%": { backgroundPosition: "0% 50%" },
+                    "50%": { backgroundPosition: "100% 50%" },
+                },
             },
             animation: {
                 "accordion-down": "accordion-down 0.2s ease-out",
@@ -176,6 +180,7 @@ module.exports = {
                 "pulse-ring": "pulse-ring 1.5s ease-out infinite",
                 "slide-in-right": "slide-in-right 0.3s ease-out",
                 float: "float 3s ease-in-out infinite",
+                "welcome-gradient": "welcome-gradient 8s ease-in-out infinite",
             },
             transitionTimingFunction: {
                 spring: "cubic-bezier(0.175, 0.885, 0.32, 1.275)",

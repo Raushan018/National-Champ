@@ -2,6 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import {
     BookOpen,
@@ -17,10 +18,10 @@ import {
     CheckCircle2,
     Brain,
     Rocket,
-    Target,
-    Medal
+    Target
 } from "lucide-react";
 import { Footer } from "@/components/layout/Footer";
+import championImage from "@/assets/Cheerful 3D Study Group Illustration.png";
 import { cn } from "@/lib/utils";
 
 /* ── Animation helpers ──────────────────────────────────────────── */
@@ -125,33 +126,22 @@ export default function HomePage() {
                             transition={{ duration: 1, type: "spring" }}
                             className="relative flex justify-center"
                         >
-                            <div className="relative w-full aspect-square max-w-[500px]">
-                                {/* Central Floating Card */}
+                            <div className="relative left-2 -top-2 w-full aspect-square max-w-[600px]">
+                                {/* Main hero artwork */}
                                 <motion.div
                                     animate={{ y: [0, -15, 0] }}
                                     transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-                                    className="absolute inset-0 bg-white rounded-3xl shadow-card border-4 border-brand-primary/10 flex flex-col items-center justify-center p-6 overflow-hidden"
+                                    className="absolute inset-0 flex items-center justify-center"
                                 >
-                                    <Trophy className="w-32 h-32 text-brand-secondary mb-4 drop-shadow-md" />
-                                    <div className="text-center">
-                                        <p className="font-heading font-black text-3xl text-brand-primary mb-1">Champion!</p>
-                                        <div className="flex justify-center gap-1.5">
-                                            {[1, 2, 3, 4, 5].map(i => <Star key={i} className="w-6 h-6 text-brand-secondary fill-brand-secondary" />)}
-                                        </div>
-                                    </div>
-
-                                    {/* Small floating elements */}
-                                    <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 20, ease: "linear" }} className="absolute -top-10 -right-10 w-40 h-40 bg-brand-primary/20 rounded-full flex items-center justify-center blur-sm" />
-                                    <motion.div animate={{ rotate: -360 }} transition={{ repeat: Infinity, duration: 25, ease: "linear" }} className="absolute -bottom-10 -left-10 w-48 h-48 bg-brand-accent/20 rounded-full flex items-center justify-center blur-sm" />
+                                    <Image
+                                        src={championImage}
+                                        alt="Students learning together with a trophy"
+                                        width={1536}
+                                        height={1024}
+                                        className="h-full w-full object-contain drop-shadow-md"
+                                    />
                                 </motion.div>
 
-                                {/* Mini Badges */}
-                                <motion.div animate={{ scale: [1, 1.1, 1] }} transition={{ repeat: Infinity, duration: 3 }} className="absolute -top-10 left-0 w-24 h-24 bg-brand-success rounded-3xl shadow-button-p flex items-center justify-center border-4 border-white -rotate-12">
-                                    <Medal className="w-12 h-12 text-white" />
-                                </motion.div>
-                                <motion.div animate={{ scale: [1, 1.2, 1] }} transition={{ repeat: Infinity, duration: 4, delay: 0.5 }} className="absolute bottom-10 -right-5 w-28 h-28 bg-brand-accent rounded-full shadow-button-a flex items-center justify-center border-4 border-white rotate-12">
-                                    <Rocket className="w-14 h-14 text-white" />
-                                </motion.div>
                             </div>
                         </motion.div>
                     </div>
